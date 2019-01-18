@@ -3,7 +3,6 @@ import { graphql } from 'react-apollo';
 import { getComicsQuery } from '../queries/queries';
 
 // components
-import ComicDetails from './ComicDetails';
 
 class ComicList extends Component {
     constructor(props) {
@@ -29,7 +28,7 @@ class ComicList extends Component {
         } else {
             return data.comics.reverse().map(comic => {
                 return (
-                    <div key={comic.id} onClick={e => this.setState({ selected: comic.id })}>
+                    <div key={comic.id}>
                         <p>{comic.title}</p> <span className="bullet">•</span> <p>{comic.number}</p>{' '}
                         <span className="bullet">•</span> <p>{comic.year}</p>{' '}
                         <span className="bullet">•</span> <p>{comic.condition}</p>{' '}
@@ -46,7 +45,6 @@ class ComicList extends Component {
                     <h2>{this.showCount()}</h2>
                     {this.displayComics()}
                 </ul>
-                <ComicDetails comicId={this.state.selected} />
             </div>
         );
     }
