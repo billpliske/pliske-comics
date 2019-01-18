@@ -44,6 +44,7 @@ class AddComic extends Component {
                     />
                     <datalist id="comics" onChange={e => this.setState({ title: e.target.value })}>
                         <option>Action Comics</option>
+                        <option>Alpha Flight</option>
                         <option>Amazing Spider-Man</option>
                         <option>Aquaman</option>
                         <option>Avengers</option>
@@ -56,6 +57,8 @@ class AddComic extends Component {
                         <option>House of Mystery</option>
                         <option>Invaders</option>
                         <option>Justice League of America</option>
+                        <option>Legion of Super-Heroes</option>
+                        <option>Marvel Tales</option>
                         <option>Marvel Team-Up</option>
                         <option>Marvel Two-In-One</option>
                         <option>Ms. Marvel</option>
