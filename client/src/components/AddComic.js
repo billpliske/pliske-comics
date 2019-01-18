@@ -37,7 +37,37 @@ class AddComic extends Component {
             <form id="add-comic" onSubmit={this.submitForm.bind(this)}>
                 <div className="field">
                     <label>Comic title:</label>
-                    <input type="text" onChange={e => this.setState({ title: e.target.value })} />
+                    <input
+                        type="text"
+                        list="comics"
+                        onChange={e => this.setState({ title: e.target.value })}
+                    />
+                    <datalist id="comics" onChange={e => this.setState({ title: e.target.value })}>
+                        <option>Action Comics</option>
+                        <option>Amazing Spider-Man</option>
+                        <option>Aquaman</option>
+                        <option>Avengers</option>
+                        <option>Brave and the Bold</option>
+                        <option>Daredevil</option>
+                        <option>Defenders</option>
+                        <option>Doctor Strange</option>
+                        <option>Fantastic Four</option>
+                        <option>Flash</option>
+                        <option>House of Mystery</option>
+                        <option>Invaders</option>
+                        <option>Justice League of America</option>
+                        <option>Marvel Team-Up</option>
+                        <option>Marvel Two-In-One</option>
+                        <option>Ms. Marvel</option>
+                        <option>Strange Tales</option>
+                        <option>Sub-Mariner</option>
+                        <option>Superman</option>
+                        <option>Teen Titans</option>
+                        <option>Thor</option>
+                        <option>Wonder Woman</option>
+                        <option>World's Finest</option>
+                        <option>X-Men</option>
+                    </datalist>
                 </div>
                 <div className="field">
                     <label>Number:</label>
