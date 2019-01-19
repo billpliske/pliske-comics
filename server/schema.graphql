@@ -1,0 +1,24 @@
+# This file contains both Objects, Queries, and Mutations
+type Comic {
+    title: String!
+    year: String!
+    number: String!
+    condition: String!
+    notes: String
+    image: String
+}
+
+type Query {
+    comics: [Comic]
+}
+
+type Mutation {
+    addComic(
+        title: String!
+        year: String!
+        number: String!
+        condition: String!
+        notes: String
+        image: String
+    ): Comic
+}
