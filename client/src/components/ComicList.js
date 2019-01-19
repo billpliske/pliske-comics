@@ -12,26 +12,36 @@ const ComicList = () => (
             if (error) return <Info>Error :(</Info>;
 
             return (
-                <React.Fragment>
+                <Wrapper>
                     <Title>Total comics: {data.comics.length}</Title>
+
+                    <Columns>
+                        <Column>Title</Column>
+                        <Column>Number</Column>
+                        <Column>Year</Column>
+                        <Column>Condition</Column>
+                        <Column>Notes</Column>
+                    </Columns>
                     {data.comics.reverse().map(comic => (
                         <ListWrapper key={comic.id}>
                             <Item>{comic.title}</Item>
-                            <span className="bullet">•</span>
+
                             <Item>{comic.number}</Item>
-                            <span className="bullet">•</span>
-                            <Item>{comic.year}</Item> <span className="bullet">•</span>
-                            <Item>{comic.condition}</Item> <span className="bullet">•</span>
+
+                            <Item>{comic.year}</Item>
+
+                            <Item>{comic.condition}</Item>
+
                             <Item>{comic.notes}</Item>
                         </ListWrapper>
                     ))}
-                </React.Fragment>
+                </Wrapper>
             );
         }}
     </Query>
 );
 
-const ListWrapper = styled.div`
+const Wrapper = styled.div`
     position: relative;
 `;
 
@@ -39,9 +49,41 @@ const Title = styled.h2`
     color: white;
 `;
 
-const Item = styled.p`
-    display: inline-block;
+const Columns = styled.div`
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr repeat(3, 70px) 1fr;
+`;
+
+const Column = styled.div`
+    padding: 10px 0;
     color: white;
+    text-align: center;
+    &:first-of-type {
+        text-align: left;
+    }
+    &:last-of-type {
+        text-align: left;
+    }
+`;
+const ListWrapper = styled.div`
+    position: relative;
+    border-top: 1px solid #880e4f;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr repeat(3, 70px) 1fr;
+`;
+
+const Item = styled.div`
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    &:first-of-type {
+        text-align: left;
+    }
+    &:last-of-type {
+        text-align: left;
+    }
 `;
 
 const Info = styled.p`

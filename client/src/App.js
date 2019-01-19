@@ -18,11 +18,13 @@ class App extends Component {
             <ApolloProvider client={client}>
                 <Wrapper>
                     <Overlay>
-                        <div id="main">
-                            <Header>Comic uploader</Header>
-                            <AddComic />
-                            <ComicList />
-                        </div>
+                        <Header>Comic uploader</Header>
+                        <ScrolledDiv>
+                            <Grid id="main">
+                                <AddComic />
+                                <ComicList />
+                            </Grid>
+                        </ScrolledDiv>
                     </Overlay>
                 </Wrapper>
             </ApolloProvider>
@@ -52,6 +54,20 @@ const Overlay = styled.div`
 const Header = styled.h1`
     color: white;
     text-align: center;
+`;
+
+const ScrolledDiv = styled.div`
+    box-sizing: border-box;
+    height: 100%;
+    overflow: scroll;
+    padding: 20px;
+    position: relative;
+`;
+
+const Grid = styled.div`
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: 1fr 3fr;
 `;
 
 export default App;

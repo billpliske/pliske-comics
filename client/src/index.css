@@ -4,13 +4,13 @@ body {
 }
 
 
-#main {
+/* #main {
     box-sizing: border-box;
     height: 100%;
     overflow: scroll;
     padding: 0;
     position: relative;
-}
+} */
 
 #book-list {
     padding: 0;
@@ -32,10 +32,10 @@ body {
     padding: 0 15px;
 }
 
-div p {
+/* div p {
     display: inline-block;
-}
-
+} */
+/*
 div p:nth-child(1) {
     width: 150px;
 }
@@ -54,7 +54,7 @@ div p:nth-child(7) {
 
 div p:nth-child(9) {
     width: 150px;
-}
+} */
 
 
 
