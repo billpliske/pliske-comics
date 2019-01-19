@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import styled from 'styled-components';
 import { getComicsQuery } from '../queries/queries';
 
 // components
@@ -15,25 +16,28 @@ class ComicList extends Component {
         var data = this.props.data;
 
         if (data.loading) {
-            return <div>Counting comics...</div>;
+            return <Info>Counting comics...</Info>;
         } else {
-            return `Total comics: ${data.comics.length}`;
+            return <Title>Total comics: {data.comics.length}</Title>;
         }
     }
     displayComics() {
         var data = this.props.data;
 
         if (data.loading) {
-            return <div>Loading comics...</div>;
+            return <Info>Loading comics...</Info>;
         } else {
             return data.comics.reverse().map(comic => {
                 return (
-                    <div key={comic.id}>
-                        <p>{comic.title}</p> <span className="bullet">•</span> <p>{comic.number}</p>{' '}
-                        <span className="bullet">•</span> <p>{comic.year}</p>{' '}
-                        <span className="bullet">•</span> <p>{comic.condition}</p>{' '}
-                        <span className="bullet">•</span> <p>{comic.notes}</p>
-                    </div>
+                    <ListWrapper key={comic.id}>
+                        <Item>{comic.title}</Item>
+                        <span className="bullet">•</span>
+                        <Item>{comic.number}</Item>
+                        <span className="bullet">•</span>
+                        <Item>{comic.year}</Item> <span className="bullet">•</span>
+                        <Item>{comic.condition}</Item> <span className="bullet">•</span>
+                        <Item>{comic.notes}</Item>
+                    </ListWrapper>
                 );
             });
         }
@@ -49,5 +53,41 @@ class ComicList extends Component {
         );
     }
 }
+
+const ListWrapper = styled.div`
+    position: relative;
+`;
+
+const Title = styled.h2`
+    color: white;
+`;
+
+const Item = styled.p`
+    display: inline-block;
+    color: white;
+    &:nth-child(1) {
+        width: 150px;
+    }
+
+    &:nth-child(3) {
+        width: 50px;
+    }
+
+    &:nth-child(5) {
+        width: 50px;
+    }
+
+    &:nth-child(7) {
+        width: 50px;
+    }
+
+    &:nth-child(9) {
+        width: 150px;
+    }
+`;
+
+const Info = styled.p`
+    color: darkorange;
+`;
 
 export default graphql(getComicsQuery)(ComicList);

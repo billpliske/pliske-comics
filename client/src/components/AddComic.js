@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
+import styled from 'styled-components';
 import { addComicMutation, getComicsQuery } from '../queries/queries';
 
 class AddComic extends Component {
@@ -34,15 +35,15 @@ class AddComic extends Component {
     }
     render() {
         return (
-            <form id="add-comic" onSubmit={this.submitForm.bind(this)}>
-                <div className="field">
-                    <label>Comic title:</label>
-                    <input
+            <Form id="add-comic" onSubmit={this.submitForm.bind(this)}>
+                <Field>
+                    <Label>Comic title:</Label>
+                    <Input
                         type="text"
                         list="comics"
                         onChange={e => this.setState({ title: e.target.value })}
                     />
-                    <datalist id="comics" onChange={e => this.setState({ title: e.target.value })}>
+                    <Datalist id="comics" onChange={e => this.setState({ title: e.target.value })}>
                         <option>Action Comics</option>
                         <option>Alpha Flight</option>
                         <option>Amazing Spider-Man</option>
@@ -70,35 +71,80 @@ class AddComic extends Component {
                         <option>Wonder Woman</option>
                         <option>World's Finest</option>
                         <option>X-Men</option>
-                    </datalist>
-                </div>
-                <div className="field">
-                    <label>Number:</label>
-                    <input type="text" onChange={e => this.setState({ number: e.target.value })} />
-                </div>
-                <div className="field">
-                    <label>Year:</label>
-                    <input type="text" onChange={e => this.setState({ year: e.target.value })} />
-                </div>
-                <div className="field">
-                    <label>Condition:</label>
-                    <input
+                    </Datalist>
+                </Field>
+                <Field>
+                    <Label>Number:</Label>
+                    <Input type="text" onChange={e => this.setState({ number: e.target.value })} />
+                </Field>
+                <Field>
+                    <Label>Year:</Label>
+                    <Input type="text" onChange={e => this.setState({ year: e.target.value })} />
+                </Field>
+                <Field>
+                    <Label>Condition:</Label>
+                    <Input
                         type="text"
                         onChange={e => this.setState({ condition: e.target.value })}
                     />
-                </div>
-                <div className="field">
-                    <label>Notes:</label>
-                    <input type="text" onChange={e => this.setState({ notes: e.target.value })} />
-                </div>
-                <div className="field">
-                    <label>Image:</label>
-                    <input type="text" onChange={e => this.setState({ image: e.target.value })} />
-                </div>
-                <button type="submit" />
-            </form>
+                </Field>
+                <Field>
+                    <Label>Notes:</Label>
+                    <Input type="text" onChange={e => this.setState({ notes: e.target.value })} />
+                </Field>
+                <Field>
+                    <Label>Image:</Label>
+                    <Input type="text" onChange={e => this.setState({ image: e.target.value })} />
+                </Field>
+                {/* <Button type="submit" /> */}
+            </Form>
         );
     }
 }
+
+const Form = styled.form`
+    font-size: 20px;
+    padding: 30px;
+    width: 800px;
+`;
+
+const Field = styled.div`
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+`;
+
+const Label = styled.label`
+    padding: 10px;
+    text-align: right;
+    color: white;
+`;
+
+const Input = styled.input`
+    box-sizing: border-box;
+    font-size: 20px;
+    margin: 4px 0;
+    padding: 6px;
+`;
+
+const Datalist = styled.datalist`
+    box-sizing: border-box;
+    font-size: 20px;
+    margin: 4px 0;
+    padding: 6px;
+`;
+
+// const Button = styled.button`
+//     background: #ad1457;
+//     border: 0;
+//     border-radius: 50%;
+//     bottom: 10px;
+//     color: #ffffff;
+//     cursor: pointer;
+//     font-size: 2em;
+//     left: 10px;
+//     padding: 0 10px;
+//     position: absolute;
+// `;
 
 export default compose(graphql(addComicMutation, { name: 'addComicMutation' }))(AddComic);

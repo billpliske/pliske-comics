@@ -3,15 +3,13 @@ body {
     font-family: "Nunito SemiBold";
 }
 
-#main h1 {
-    color: #444444;
-    text-align: center;
-}
 
 #main {
     box-sizing: border-box;
     height: 100%;
+    overflow: scroll;
     padding: 0;
+    position: relative;
 }
 
 #book-list {
@@ -59,44 +57,6 @@ div p:nth-child(9) {
 }
 
 
-
-form {
-    font-size: 20px;
-    padding: 30px;
-    width: 800px;
-}
-
-form .field {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 1fr 1fr;
-}
-
-form label {
-    padding: 10px;
-    text-align: right;
-}
-
-form input,
-form select {
-    box-sizing: border-box;
-    font-size: 20px;
-    margin: 4px 0;
-    padding: 6px;
-}
-
-form button {
-    background: #ad1457;
-    border: 0;
-    border-radius: 50%;
-    bottom: 10px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 2em;
-    left: 10px;
-    padding: 0 10px;
-    position: absolute;
-}
 
 #book-details {
     background: #ad1457;
