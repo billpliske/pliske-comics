@@ -65,6 +65,8 @@ const Header = styled.h1`
 const ScrolledDiv = styled.div`
     box-sizing: border-box;
     height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     overflow: scroll;
     padding: 20px;
     position: relative;
