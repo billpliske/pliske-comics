@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import styled from 'styled-components';
-import { addComicMutation, getComicsQuery } from '../queries/queries';
+import { addComicMutation, GET_COMICS } from '../queries/queries';
 
 class AddComic extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class AddComic extends Component {
     submitForm(e) {
         e.preventDefault();
         // use the addComicMutation
-        this.props.addComicMutation({
+        this.props.ADD_COMIC({
             variables: {
                 title: this.state.title,
                 number: this.state.number,
@@ -28,7 +28,7 @@ class AddComic extends Component {
                 notes: this.state.notes,
                 image: this.state.image,
             },
-            refetchQueries: [{ query: getComicsQuery }],
+            refetchQueries: [{ query: GET_COMICS }],
         });
         document.getElementById('add-comic').reset();
         document.querySelector('input').focus();

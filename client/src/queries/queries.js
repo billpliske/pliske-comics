@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 
-const getComicsQuery = gql`
+const GET_COMICS = gql`
     {
         comics {
             id
@@ -53,4 +53,4 @@ const getComicQuery = gql`
     }
 `;
 
-export { getComicsQuery, addComicMutation, getComicQuery };
+export { GET_COMICS, addComicMutation, getComicQuery };

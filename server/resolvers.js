@@ -1,7 +1,9 @@
 const Comic = require("./models/comic");
 
 const Query = {
-    comics: () => Comic.find({})
+    comics(parent, args) {
+        return Comic.find({});
+    }
 };
 
 const Mutation = {

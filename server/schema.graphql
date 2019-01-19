@@ -1,5 +1,6 @@
 # This file contains both Objects, Queries, and Mutations
 type Comic {
+    id: ID
     title: String!
     year: String!
     number: String!
