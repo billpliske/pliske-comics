@@ -80,6 +80,7 @@ const Item = styled.div`
     color: white;
     padding: 10px 0;
     text-align: center;
+    align-self: center;
     &:first-of-type {
         text-align: left;
     }

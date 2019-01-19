@@ -69,6 +69,7 @@ class AddComic extends Component {
                                     <option>Flash</option>
                                     <option>House of Mystery</option>
                                     <option>Invaders</option>
+                                    <option>Iron Man</option>
                                     <option>Justice League of America</option>
                                     <option>Legion of Super-Heroes</option>
                                     <option>Marvel Tales</option>
