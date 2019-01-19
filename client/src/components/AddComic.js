@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import { addComicMutation, GET_COMICS } from '../queries/queries';
+import { ADD_COMIC, GET_COMICS } from '../queries/queries';
 
 class AddComic extends Component {
     constructor(props) {
@@ -16,88 +16,97 @@ class AddComic extends Component {
         };
     }
 
-    submitForm(e) {
-        e.preventDefault();
-        // use the addComicMutation
-        this.props.ADD_COMIC({
-            variables: {
-                title: this.state.title,
-                number: this.state.number,
-                year: this.state.year,
-                condition: this.state.condition,
-                notes: this.state.notes,
-                image: this.state.image,
-            },
-            refetchQueries: [{ query: GET_COMICS }],
-        });
-        document.getElementById('add-comic').reset();
-        document.querySelector('input').focus();
-    }
+    saveToState = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
     render() {
         return (
-            <Form id="add-comic" onSubmit={this.submitForm.bind(this)}>
-                <Field>
-                    <Label>Comic title:</Label>
-                    <Input
-                        type="text"
-                        list="comics"
-                        onChange={e => this.setState({ title: e.target.value })}
-                    />
-                    <Datalist id="comics" onChange={e => this.setState({ title: e.target.value })}>
-                        <option>Action Comics</option>
-                        <option>Alpha Flight</option>
-                        <option>Amazing Spider-Man</option>
-                        <option>Aquaman</option>
-                        <option>Avengers</option>
-                        <option>Brave and the Bold</option>
-                        <option>Daredevil</option>
-                        <option>Defenders</option>
-                        <option>Doctor Strange</option>
-                        <option>Fantastic Four</option>
-                        <option>Flash</option>
-                        <option>House of Mystery</option>
-                        <option>Invaders</option>
-                        <option>Justice League of America</option>
-                        <option>Legion of Super-Heroes</option>
-                        <option>Marvel Tales</option>
-                        <option>Marvel Team-Up</option>
-                        <option>Marvel Two-In-One</option>
-                        <option>Ms. Marvel</option>
-                        <option>Strange Tales</option>
-                        <option>Sub-Mariner</option>
-                        <option>Superman</option>
-                        <option>Teen Titans</option>
-                        <option>Thor</option>
-                        <option>Wonder Woman</option>
-                        <option>World's Finest</option>
-                        <option>X-Men</option>
-                    </Datalist>
-                </Field>
-                <Field>
-                    <Label>Number:</Label>
-                    <Input type="text" onChange={e => this.setState({ number: e.target.value })} />
-                </Field>
-                <Field>
-                    <Label>Year:</Label>
-                    <Input type="text" onChange={e => this.setState({ year: e.target.value })} />
-                </Field>
-                <Field>
-                    <Label>Condition:</Label>
-                    <Input
-                        type="text"
-                        onChange={e => this.setState({ condition: e.target.value })}
-                    />
-                </Field>
-                <Field>
-                    <Label>Notes:</Label>
-                    <Input type="text" onChange={e => this.setState({ notes: e.target.value })} />
-                </Field>
-                <Field>
-                    <Label>Image:</Label>
-                    <Input type="text" onChange={e => this.setState({ image: e.target.value })} />
-                </Field>
-                {/* <Button type="submit" /> */}
-            </Form>
+            <Mutation
+                mutation={ADD_COMIC}
+                variables={this.state}
+                refetchQueries={[{ query: GET_COMICS }]}
+            >
+                {(addComic, { data }) => (
+                    <Form
+                        id="add-comic"
+                        method="post"
+                        onSubmit={async e => {
+                            e.preventDefault();
+                            await addComic();
+                            this.setState({
+                                title: '',
+                                number: '',
+                                year: '',
+                                condition: '',
+                                notes: '',
+                                image: '',
+                            });
+                            document.getElementById('add-comic').reset();
+                            document.querySelector('input').focus();
+                        }}
+                    >
+                        <Field>
+                            <Label>Comic title:</Label>
+                            <Input
+                                type="text"
+                                name="title"
+                                list="comics"
+                                onChange={this.saveToState}
+                            />
+                            <Datalist id="comics" name="title" onChange={this.saveToState}>
+                                <option>Action Comics</option>
+                                <option>Alpha Flight</option>
+                                <option>Amazing Spider-Man</option>
+                                <option>Aquaman</option>
+                                <option>Avengers</option>
+                                <option>Brave and the Bold</option>
+                                <option>Daredevil</option>
+                                <option>Defenders</option>
+                                <option>Doctor Strange</option>
+                                <option>Fantastic Four</option>
+                                <option>Flash</option>
+                                <option>House of Mystery</option>
+                                <option>Invaders</option>
+                                <option>Justice League of America</option>
+                                <option>Legion of Super-Heroes</option>
+                                <option>Marvel Tales</option>
+                                <option>Marvel Team-Up</option>
+                                <option>Marvel Two-In-One</option>
+                                <option>Ms. Marvel</option>
+                                <option>Strange Tales</option>
+                                <option>Sub-Mariner</option>
+                                <option>Superman</option>
+                                <option>Teen Titans</option>
+                                <option>Thor</option>
+                                <option>Wonder Woman</option>
+                                <option>World's Finest</option>
+                                <option>X-Men</option>
+                            </Datalist>
+                        </Field>
+                        <Field>
+                            <Label>Number:</Label>
+                            <Input type="text" name="number" onChange={this.saveToState} />
+                        </Field>
+                        <Field>
+                            <Label>Year:</Label>
+                            <Input type="text" name="year" onChange={this.saveToState} />
+                        </Field>
+                        <Field>
+                            <Label>Condition:</Label>
+                            <Input type="text" name="condition" onChange={this.saveToState} />
+                        </Field>
+                        <Field>
+                            <Label>Notes:</Label>
+                            <Input type="text" name="notes" onChange={this.saveToState} />
+                        </Field>
+                        <Field>
+                            <Label>Image:</Label>
+                            <Input type="text" name="image" onChange={this.saveToState} />
+                        </Field>
+                    </Form>
+                )}
+            </Mutation>
         );
     }
 }
@@ -134,17 +143,4 @@ const Datalist = styled.datalist`
     padding: 6px;
 `;
 
-// const Button = styled.button`
-//     background: #ad1457;
-//     border: 0;
-//     border-radius: 50%;
-//     bottom: 10px;
-//     color: #ffffff;
-//     cursor: pointer;
-//     font-size: 2em;
-//     left: 10px;
-//     padding: 0 10px;
-//     position: absolute;
-// `;
-
-export default compose(graphql(addComicMutation, { name: 'addComicMutation' }))(AddComic);
+export default AddComic;

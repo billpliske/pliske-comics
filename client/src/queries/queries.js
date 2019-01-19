@@ -13,7 +13,7 @@ const GET_COMICS = gql`
     }
 `;
 
-const addComicMutation = gql`
+const ADD_COMIC = gql`
     mutation AddComic(
         $title: String!
         $number: String!
@@ -53,4 +53,4 @@ const getComicQuery = gql`
     }
 `;
 
-export { GET_COMICS, addComicMutation, getComicQuery };
+export { GET_COMICS, ADD_COMIC, getComicQuery };
