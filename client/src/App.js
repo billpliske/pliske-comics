@@ -40,6 +40,7 @@ const Wrapper = styled.div`
     position: fixed;
     right: 0;
     top: 0;
+    font-family: 'raleway', sans-serif;
 }`;
 
 const Overlay = styled.div`
@@ -54,6 +55,11 @@ const Overlay = styled.div`
 const Header = styled.h1`
     color: white;
     text-align: center;
+    font-weight: 800;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    font-size: 38px;
+    padding: 20px 0;
 `;
 
 const ScrolledDiv = styled.div`

@@ -105,6 +105,7 @@ class AddComic extends Component {
                                 <Label>Image:</Label>
                                 <Input type="text" name="image" onChange={this.saveToState} />
                             </Field>
+                            <Button type="submit">Submit</Button>
                         </Form>
                     </Wrapper>
                 )}
@@ -147,6 +148,17 @@ const Datalist = styled.datalist`
     font-size: 20px;
     margin: 4px 0;
     padding: 6px;
+`;
+
+const Button = styled.button`
+    padding: 20px;
+    display: block;
+    width: 70%;
+    margin: 30px auto;
+    background-color: darkorange;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
 `;
 
 export default AddComic;

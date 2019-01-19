@@ -56,8 +56,10 @@ const Columns = styled.div`
 `;
 
 const Column = styled.div`
+    font-style: italic;
+    font-size: 14px;
     padding: 10px 0;
-    color: white;
+    color: darkorange;
     text-align: center;
     &:first-of-type {
         text-align: left;
