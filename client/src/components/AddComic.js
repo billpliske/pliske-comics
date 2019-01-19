@@ -27,7 +27,7 @@ class AddComic extends Component {
                 variables={this.state}
                 refetchQueries={[{ query: GET_COMICS }]}
             >
-                {(addComic, { data }) => (
+                {addComic => (
                     <Wrapper>
                         <Form
                             id="add-comic"
