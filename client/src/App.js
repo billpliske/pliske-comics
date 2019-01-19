@@ -53,7 +53,7 @@ const Overlay = styled.div`
 }`;
 
 const Header = styled.h1`
-    color: white;
+    color: darkorange;
     text-align: center;
     font-weight: 800;
     letter-spacing: 12px;

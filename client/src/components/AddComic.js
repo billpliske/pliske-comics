@@ -153,9 +153,9 @@ const Datalist = styled.datalist`
 const Button = styled.button`
     padding: 20px;
     display: block;
-    width: 70%;
+    width: 100%;
     margin: 30px auto;
-    background-color: darkorange;
+    background-color: black;
     color: white;
     font-weight: 700;
     font-size: 20px;
