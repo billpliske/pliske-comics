@@ -40,17 +40,17 @@ const ADD_COMIC = gql`
     }
 `;
 
-const getComicQuery = gql`
-    query GetComic($id: ID) {
-        comic(id: $id) {
-            id
-            title
-            number
-            year
-            condition
-            notes
-        }
-    }
-`;
+// const getComicQuery = gql`
+//     query GetComic($id: ID) {
+//         comic(id: $id) {
+//             id
+//             title
+//             number
+//             year
+//             condition
+//             notes
+//         }
+//     }
+// `;
 
-export { GET_COMICS, ADD_COMIC, getComicQuery };
+export { GET_COMICS, ADD_COMIC };
