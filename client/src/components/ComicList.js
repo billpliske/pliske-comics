@@ -9,7 +9,7 @@ const ComicList = () => (
     <Query query={GET_COMICS}>
         {({ loading, error, data }) => {
             if (loading) return <Info>Loading...</Info>;
-            if (error) return <Info>Error :(</Info>;
+            if (error) return <Info>Error</Info>;
 
             return (
                 <Wrapper>
