@@ -6,8 +6,8 @@ This seemed like a good time to sell my **comic book collection**, which started
 
 #### **So I built this upload tool.**
 
-The server is built with Node, Apollo 2, GraphQL, and Mongo.
-The client is built with React, Apollo 2, tyled Components, and GraphQL.
+-   The server is built with Node, Apollo 2, GraphQL, and Mongo.
+-   The client is built with React, Apollo 2, tyled Components, and GraphQL.
 
 To do your own, you'll want to spin up your own Mongo database. I did mine through mLab, which was free for small, personal projects.
 
