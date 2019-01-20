@@ -4,7 +4,8 @@
 
 This seemed like a good time to sell my **comic book collection**, which started (gasp) 44 years ago. Most were purchased between age 9 and 19, and they stayed with me through out many, many moves. Anyway, I figured I'd try to sell them all at once to a local comic book shop. One of their first questions would likely be, "what do you have?"
 
-**So I built this upload tool.**
+### **So I built this upload tool.**
+
 The server is built with Node, Apollo 2, GraphQL, and Mongo.
 The client is built with React, Apollo 2, tyled Components, and GraphQL.
 
