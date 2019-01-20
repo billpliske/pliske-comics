@@ -14,4 +14,4 @@ Once you have a path to your own database, you'll open up `server/app.js`, and g
 
 `mongoose.connect(process.env.DBPATH);`
 
-Simply replace process.env.DBPATH with your own URL.
+Simply replace process.env.DBPATH with your own URL, or include your own .env file with teh URl there.
