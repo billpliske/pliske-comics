@@ -13,6 +13,19 @@ const GET_COMICS = gql`
     }
 `;
 
+const FILTER_COMICS = gql`
+    query FilterComics($title: String) {
+        filterComics(title: $title) {
+            id
+            title
+            number
+            year
+            condition
+            notes
+        }
+    }
+`;
+
 const ADD_COMIC = gql`
     mutation AddComic(
         $title: String!
@@ -40,7 +53,7 @@ const ADD_COMIC = gql`
     }
 `;
 
-// const getComicQuery = gql`
+// const GET = gql`
 //     query GetComic($id: ID) {
 //         comic(id: $id) {
 //             id
@@ -53,4 +66,4 @@ const ADD_COMIC = gql`
 //     }
 // `;
 
-export { GET_COMICS, ADD_COMIC };
+export { GET_COMICS, ADD_COMIC, FILTER_COMICS };

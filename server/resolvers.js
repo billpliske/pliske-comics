@@ -1,13 +1,24 @@
 const Comic = require("./models/comic");
 
 const Query = {
-    comics(parent, args) {
-        return Comic.find({}).sort({ title: -1, number: -1 });
+    comics: (parent, args) => {
+        return Comic.find({}).sort({});
+        // return Comic.find({}).sort({ title: -1, number: -1 });
+    },
+    comic: (parent, args) => {
+        const title = args.title;
+        // const number = args.number;
+        // const year = args.year;
+        // const filter = { title, number, year };
+        return Comic.find({ title: new RegExp(title, "i") }).sort({
+            title: 1,
+            number: 1
+        });
     }
 };
 
 const Mutation = {
-    addComic(parent, args) {
+    addComic: (parent, args) => {
         let comic = new Comic({
             title: args.title,
             number: args.number,

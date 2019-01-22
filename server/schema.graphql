@@ -11,6 +11,7 @@ type Comic {
 
 type Query {
     comics: [Comic]
+    comic(title: String, number: Int, year: Int): [Comic]
 }
 
 type Mutation {
@@ -22,4 +23,10 @@ type Mutation {
         notes: String
         image: String
     ): Comic
+}
+
+input Filters {
+    title: String
+    year: Int
+    number: Int
 }
