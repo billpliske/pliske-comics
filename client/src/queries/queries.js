@@ -16,8 +16,8 @@ const GET_COMICS = gql`
 const ADD_COMIC = gql`
     mutation AddComic(
         $title: String!
-        $number: String!
-        $year: String!
+        $number: Int!
+        $year: Int!
         $condition: String!
         $notes: String!
         $image: String!

@@ -15,4 +15,10 @@ Once you have a path to your own database, you'll open up `server/app.js`, and g
 
 `mongoose.connect(process.env.DBPATH);`
 
-Simply replace process.env.DBPATH with your own URL, or include your own .env file with teh URl there.
+Simply replace process.env.DBPATH with your own URL, or include your own .env file with the URl there.
+
+#### Mistakes?
+
+-   Accidentally upload a bunch of documents, and then realize you mean to use Ints instead of Strings for a category? Here's how I fixed it: I logged in to mLab's Mongo shell, and did this command:
+
+`db.comics.find().forEach( function (x) { x.year = parseInt(x.year);db.comics.save(x);});`

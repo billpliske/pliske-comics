@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const comicSchema = new Schema({
     title: String,
-    year: String,
-    number: String,
+    year: Number,
+    number: Number,
     condition: String,
     notes: String,
     image: String

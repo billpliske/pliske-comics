@@ -2,8 +2,8 @@
 type Comic {
     id: ID
     title: String!
-    year: String!
-    number: String!
+    year: Int!
+    number: Int!
     condition: String!
     notes: String
     image: String
@@ -16,8 +16,8 @@ type Query {
 type Mutation {
     addComic(
         title: String!
-        year: String!
-        number: String!
+        year: Int!
+        number: Int!
         condition: String!
         notes: String
         image: String

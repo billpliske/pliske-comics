@@ -2,7 +2,7 @@ const Comic = require("./models/comic");
 
 const Query = {
     comics(parent, args) {
-        return Comic.find({});
+        return Comic.find({}).sort({ title: -1, number: -1 });
     }
 };
 

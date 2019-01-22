@@ -17,7 +17,11 @@ class AddComic extends Component {
     }
 
     saveToState = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        if (e.target.name === 'number' || e.target.name === 'year') {
+            this.setState({ [e.target.name]: Number(e.target.value) });
+        } else {
+            this.setState({ [e.target.name]: e.target.value });
+        }
     };
 
     render() {
