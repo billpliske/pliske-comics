@@ -7,13 +7,26 @@ const Query = {
     },
     comic: (parent, args) => {
         const title = args.title;
-        // const number = args.number;
-        // const year = args.year;
-        // const filter = { title, number, year };
-        return Comic.find({ title: new RegExp(title, "i") }).sort({
-            title: 1,
-            number: 1
-        });
+        const number = args.number;
+        const year = args.year;
+        if (title) {
+            return Comic.find({ title: new RegExp(title, "i") }).sort({
+                title: 1,
+                number: 1
+            });
+        } else if (number) {
+            return Comic.find({ number }).sort({
+                title: 1,
+                number: 1
+            });
+        } else if (year) {
+            return Comic.find({ year }).sort({
+                title: 1,
+                number: 1
+            });
+        } else {
+            return Comic.find({}).sort({ title: -1, number: -1 });
+        }
     }
 };
 
