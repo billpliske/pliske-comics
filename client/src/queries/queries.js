@@ -13,9 +13,9 @@ const GET_COMICS = gql`
     }
 `;
 
-const FILTER_COMICS = gql`
-    query FilterComics($title: String) {
-        filterComics(title: $title) {
+const SEARCH = gql`
+    query SEARCH($title: String, $number: Int, $year: Int) {
+        comic(title: $title, number: $number, year: $year) {
             id
             title
             number
@@ -66,4 +66,4 @@ const ADD_COMIC = gql`
 //     }
 // `;
 
-export { GET_COMICS, ADD_COMIC, FILTER_COMICS };
+export { GET_COMICS, ADD_COMIC, SEARCH };
