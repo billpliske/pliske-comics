@@ -13,7 +13,7 @@ const ComicList = () => (
 
             return (
                 <Wrapper>
-                    <Title>Total comics: {data.comics.length}</Title>
+                    <Title>Total: {data.comics.length}</Title>
 
                     <Columns>
                         <Column>Title</Column>

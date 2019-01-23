@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { Query } from 'react-apollo';
-import styled, { css } from 'styled-components';
-import { SEARCH, GET_COMICS } from '../queries/queries';
+import styled from 'styled-components';
+import { SEARCH } from '../queries/queries';
 
 // components
 
@@ -28,7 +28,7 @@ class ComicSearch extends Component {
         }
     };
 
-    saveToState = e => {
+    updateFilter = e => {
         if (e.target.name === 'number') {
             this.setState({ [e.target.name]: Number(e.target.value) });
         } else if (e.target.name === 'year') {
@@ -45,23 +45,23 @@ class ComicSearch extends Component {
                     <SearchWrapper>
                         <Search
                             type="text"
-                            placeholder="Search for title, number, or year"
+                            placeholder={`Searching by ${this.state.filter}`}
                             onChange={this.updateSearch}
                         />
                     </SearchWrapper>
                     <ButtonWrapper>
                         <Label>Search by:</Label>
 
-                        <select
+                        <Dropdown
                             value={this.state.filter}
                             placeholder="title"
                             name="filter"
-                            onChange={this.saveToState}
+                            onChange={this.updateFilter}
                         >
-                            <option value="title">title</option>
-                            <option value="number">number</option>
-                            <option value="year">year</option>
-                        </select>
+                            <Option value="title">title</Option>
+                            <Option value="number">number</Option>
+                            <Option value="year">year</Option>
+                        </Dropdown>
                     </ButtonWrapper>
                 </SearchGrid>
 
@@ -80,7 +80,7 @@ class ComicSearch extends Component {
 
                         return (
                             <Fragment>
-                                <Title>Total comics: {data.comic.length}</Title>
+                                <Title>Comic results: {data.comic.length}</Title>
 
                                 <Columns>
                                     <Column>Title</Column>
@@ -161,24 +161,36 @@ const Info = styled.p`
 
 const SearchGrid = styled.div`
     display: grid;
-    grid-template-columns: 1fr 210px;
+    grid-template-columns: 1fr 150px;
     grid-gap: 20px;
+    padding-top: 30px;
 `;
 
 const SearchWrapper = styled.div`
     margin-right: 20px;
 `;
 
-const ButtonWrapper = styled.div``;
+const ButtonWrapper = styled.div`
+    position: relative;
+`;
 
 const Search = styled.input`
-    padding: 13px 12px 12px 12px;
+    padding: 18px 12px;
     width: 100%;
     border: 0;
     font-size: 17px;
 `;
 
-const BtnStyles = css`
+const Label = styled.label`
+    text-transform: uppercase;
+    font-size: 11px;
+    color: white;
+    position: absolute;
+    letter-spacing: 3px;
+    top: 0px;
+`;
+
+const Option = styled.option`
     padding: 14px 10px;
     display: inline-block;
     border: 0;
@@ -190,21 +202,17 @@ const BtnStyles = css`
     border: #880e4f 2px solid;
 `;
 
-const Label = styled.label`
-    padding: 10px;
-    text-align: right;
-    color: white;
-`;
-
-const Input = styled.input`
-    ${BtnStyles}
-`;
-
-const Datalist = styled.datalist`
+const Dropdown = styled.select`
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 18px;
     margin: 4px 0;
     padding: 6px;
+    width: 100%;
+    position: relative;
+    top: 13px;
+    background-color: orange;
+    border: 0;
+    height: 39px;
 `;
 
 export default ComicSearch;
