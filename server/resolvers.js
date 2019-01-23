@@ -26,7 +26,7 @@ const Query = {
                 number: 1
             });
         } else {
-            return Comic.find({}).sort({ title: -1, number: -1 });
+            return Comic.find({}).sort({ title: 1, number: 1 });
         }
     }
 };

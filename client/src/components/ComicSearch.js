@@ -1,45 +1,76 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import { Query } from 'react-apollo';
-import styled from 'styled-components';
-import { GET_COMICS } from '../queries/queries';
+import styled, { css } from 'styled-components';
+import { SEARCH, GET_COMICS } from '../queries/queries';
 
 // components
 
-const ComicSearch = () => (
-    <Query query={GET_COMICS}>
-        {({ loading, error, data }) => {
-            if (loading) return <Info>Loading...</Info>;
-            if (error) return <Info>Error</Info>;
+class ComicSearch extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: '',
+            number: null,
+            year: null,
+        };
+    }
 
-            return (
-                <Fragment>
-                    <Title>Total comics: {data.comics.length}</Title>
+    updateRadio = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
 
-                    <Columns>
-                        <Column>Title</Column>
-                        <Column>Number</Column>
-                        <Column>Year</Column>
-                        <Column>Condition</Column>
-                        <Column>Notes</Column>
-                    </Columns>
-                    {data.comics.reverse().map(comic => (
-                        <ListWrapper key={comic.id}>
-                            <Item>{comic.title}</Item>
+    render() {
+        return (
+            <Fragment>
+                <Search type="text" placeholder="Search for title, number, or year" />
+                <BtnTitle>Title</BtnTitle>
+                <BtnNumber>Number</BtnNumber>
+                <BtnYear>Year</BtnYear>
 
-                            <Item>{comic.number}</Item>
+                <Query
+                    query={SEARCH}
+                    variables={{
+                        title: this.state.title,
+                        number: this.state.number,
+                        year: this.state.year,
+                    }}
+                >
+                    {({ loading, error, data }) => {
+                        if (loading) return <Info>Loading...</Info>;
+                        if (error) return <Info>Error</Info>;
 
-                            <Item>{comic.year}</Item>
+                        return (
+                            <Fragment>
+                                <Title>Total comics: {data.comic.length}</Title>
 
-                            <Item>{comic.condition}</Item>
+                                <Columns>
+                                    <Column>Title</Column>
+                                    <Column>Number</Column>
+                                    <Column>Year</Column>
+                                    <Column>Condition</Column>
+                                    <Column>Notes</Column>
+                                </Columns>
+                                {data.comic.map(comic => (
+                                    <ListWrapper key={comic.id}>
+                                        <Item>{comic.title}</Item>
 
-                            <Item>{comic.notes}</Item>
-                        </ListWrapper>
-                    ))}
-                </Fragment>
-            );
-        }}
-    </Query>
-);
+                                        <Item>{comic.number}</Item>
+
+                                        <Item>{comic.year}</Item>
+
+                                        <Item>{comic.condition}</Item>
+
+                                        <Item>{comic.notes}</Item>
+                                    </ListWrapper>
+                                ))}
+                            </Fragment>
+                        );
+                    }}
+                </Query>
+            </Fragment>
+        );
+    }
+}
 
 const Title = styled.h2`
     color: white;
@@ -87,6 +118,35 @@ const Item = styled.div`
 
 const Info = styled.p`
     color: darkorange;
+`;
+
+const Search = styled.input`
+    padding: 13px;
+    display: inline-block;
+    border: 0;
+    font-size: 17px;
+    width: 40%;
+    margin-right: 10px;
+`;
+
+const BtnStyles = css`
+    padding: 14px 10px;
+    display: inline-block;
+    border: 0;
+    font-size: 14px;
+    margin-left: 5px;
+`;
+
+const BtnTitle = styled.button`
+    ${BtnStyles}
+`;
+
+const BtnNumber = styled.button`
+    ${BtnStyles}
+`;
+
+const BtnYear = styled.button`
+    ${BtnStyles}
 `;
 
 export default ComicSearch;

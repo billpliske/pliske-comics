@@ -1,6 +1,6 @@
 //import libraries
 import React from 'react';
-import ComicSearch from '../components/ComicList';
+import ComicSearch from '../components/ComicSearch';
 import Header from '../components/Header';
 import styled from 'styled-components';
 

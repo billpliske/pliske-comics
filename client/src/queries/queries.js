@@ -14,7 +14,7 @@ const GET_COMICS = gql`
 `;
 
 const SEARCH = gql`
-    query SEARCH($title: String, $number: Int, $year: Int) {
+    query Search($title: String, $number: Int, $year: Int) {
         comic(title: $title, number: $number, year: $year) {
             id
             title

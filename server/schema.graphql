@@ -24,3 +24,9 @@ type Mutation {
         image: String
     ): Comic
 }
+
+type Input {
+    title: String!
+    year: Int!
+    number: Int!
+}
