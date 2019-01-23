@@ -4,8 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import styled from 'styled-components';
 
 // components
-import ComicList from './components/ComicList';
-import AddComic from './components/AddComic';
+import Routing from './pages/Routing';
 
 // apollo client setup
 const client = new ApolloClient({
@@ -18,12 +17,8 @@ class App extends Component {
             <ApolloProvider client={client}>
                 <Wrapper>
                     <Overlay>
-                        <Header>Comic uploader</Header>
                         <ScrolledDiv>
-                            <Grid id="main">
-                                <AddComic />
-                                <ComicList />
-                            </Grid>
+                            <Routing />
                         </ScrolledDiv>
                     </Overlay>
                 </Wrapper>
@@ -52,16 +47,6 @@ const Overlay = styled.div`
     top: 0;
 }`;
 
-const Header = styled.h1`
-    color: darkorange;
-    text-align: center;
-    font-weight: 800;
-    letter-spacing: 12px;
-    text-transform: uppercase;
-    font-size: 38px;
-    padding: 20px 0;
-`;
-
 const ScrolledDiv = styled.div`
     box-sizing: border-box;
     height: 100%;
@@ -71,12 +56,6 @@ const ScrolledDiv = styled.div`
     padding: 20px;
     position: relative;
     padding-bottom: 200px;
-`;
-
-const Grid = styled.div`
-    display: grid;
-    grid-gap: 50px;
-    grid-template-columns: 1fr 3fr;
 `;
 
 export default App;
