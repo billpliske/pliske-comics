@@ -70,6 +70,7 @@ const ScrolledDiv = styled.div`
     overflow: scroll;
     padding: 20px;
     position: relative;
+    padding-bottom: 200px;
 `;
 
 const Grid = styled.div`

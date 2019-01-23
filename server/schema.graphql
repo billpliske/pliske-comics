@@ -24,9 +24,3 @@ type Mutation {
         image: String
     ): Comic
 }
-
-input Filters {
-    title: String
-    year: Int
-    number: Int
-}
