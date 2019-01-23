@@ -9,23 +9,61 @@ class ComicSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            filter: 'title',
             title: '',
             number: null,
             year: null,
         };
     }
 
-    updateRadio = e => {
-        this.setState({ [e.target.name]: e.target.value });
+    updateSearch = e => {
+        this.setState({ title: e.target.value });
+        console.log(this.state.year);
+        if (this.state.filter === 'number') {
+            this.setState({ number: Number(e.target.value), year: null, title: '' });
+        } else if (this.state.filter === 'year') {
+            this.setState({ year: Number(e.target.value), number: null, title: '' });
+        } else {
+            this.setState({ title: e.target.value, number: null, year: null });
+        }
+    };
+
+    saveToState = e => {
+        if (e.target.name === 'number') {
+            this.setState({ [e.target.name]: Number(e.target.value) });
+        } else if (e.target.name === 'year') {
+            this.setState({ [e.target.name]: e.target.value });
+        } else {
+            this.setState({ [e.target.name]: e.target.value });
+        }
     };
 
     render() {
         return (
             <Fragment>
-                <Search type="text" placeholder="Search for title, number, or year" />
-                <BtnTitle>Title</BtnTitle>
-                <BtnNumber>Number</BtnNumber>
-                <BtnYear>Year</BtnYear>
+                <SearchGrid>
+                    <SearchWrapper>
+                        <Search
+                            type="text"
+                            placeholder="Search for title, number, or year"
+                            onChange={this.updateSearch}
+                        />
+                    </SearchWrapper>
+                    <ButtonWrapper>
+                        <Label>Search by:</Label>
+
+                        <select
+                            value={this.state.filter}
+                            placeholder="title"
+                            name="filter"
+                            onChange={this.saveToState}
+                        >
+                            <option value="title">title</option>
+                            <option value="number">number</option>
+                            <option value="year">year</option>
+                        </select>
+                    </ButtonWrapper>
+                </SearchGrid>
 
                 <Query
                     query={SEARCH}
@@ -34,6 +72,7 @@ class ComicSearch extends Component {
                         number: this.state.number,
                         year: this.state.year,
                     }}
+                    refetchQueries={[{ query: SEARCH }]}
                 >
                     {({ loading, error, data }) => {
                         if (loading) return <Info>Loading...</Info>;
@@ -120,13 +159,23 @@ const Info = styled.p`
     color: darkorange;
 `;
 
+const SearchGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 210px;
+    grid-gap: 20px;
+`;
+
+const SearchWrapper = styled.div`
+    margin-right: 20px;
+`;
+
+const ButtonWrapper = styled.div``;
+
 const Search = styled.input`
-    padding: 13px;
-    display: inline-block;
+    padding: 13px 12px 12px 12px;
+    width: 100%;
     border: 0;
     font-size: 17px;
-    width: 40%;
-    margin-right: 10px;
 `;
 
 const BtnStyles = css`
@@ -134,19 +183,28 @@ const BtnStyles = css`
     display: inline-block;
     border: 0;
     font-size: 14px;
+    font-weight: 500;
     margin-left: 5px;
+    background-color: orange;
+    color: #880e4f;
+    border: #880e4f 2px solid;
 `;
 
-const BtnTitle = styled.button`
+const Label = styled.label`
+    padding: 10px;
+    text-align: right;
+    color: white;
+`;
+
+const Input = styled.input`
     ${BtnStyles}
 `;
 
-const BtnNumber = styled.button`
-    ${BtnStyles}
-`;
-
-const BtnYear = styled.button`
-    ${BtnStyles}
+const Datalist = styled.datalist`
+    box-sizing: border-box;
+    font-size: 20px;
+    margin: 4px 0;
+    padding: 6px;
 `;
 
 export default ComicSearch;

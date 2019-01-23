@@ -15,7 +15,6 @@ const Query = {
                 number: 1
             });
         } else if (number) {
-            console.log(number);
             return Comic.find({ number }).sort({
                 title: 1,
                 number: 1
