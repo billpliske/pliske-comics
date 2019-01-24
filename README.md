@@ -19,6 +19,6 @@ Simply replace process.env.DBPATH with your own URL, or include your own .env fi
 
 #### Mistakes?
 
--   Accidentally upload a bunch of documents, and then realize you mean to use Ints instead of Strings for a category? Here's how I fixed it: I logged in to mLab's Mongo shell, and did this command:
+-   Accidentally upload a bunch of documents, and then realize you meant to use Ints instead of Strings for a category? Here's how I fixed it: I logged in to mLab's Mongo shell, and did this command:
 
 `db.comics.find().forEach( function (x) { x.year = parseInt(x.year);db.comics.save(x);});`
