@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
+import dotenv from 'dotenv';
 import { ApolloProvider } from 'react-apollo';
 import styled from 'styled-components';
 
 // components
 import Routing from './pages/Routing';
 
+dotenv.config();
+
 // apollo client setup
 const client = new ApolloClient({
+    // uri: process.env.REACT_APP_LIVESERVER,
     uri: 'http://localhost:4000/graphql',
 });
 
