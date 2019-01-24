@@ -1,7 +1,0 @@
-Links to know
-☐ https://stackoverflow.com/questions/53177346/react-apollo-graphql-search-filter
-
-Stuff about server
-☐ Node on live server, controlled by PM2
-☐ https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04
-☐ pm2 monit  (pretty cool. CPU updates when you do a graphiql request)
